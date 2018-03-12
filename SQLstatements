@@ -1,0 +1,10 @@
+--Get recipe ingredients, quantity and unit
+SELECT ingredients.name, recipeingredients.quantity, unit.name 
+FROM recipeingredients 
+INNER JOIN unit ON unit.id = recipeingredients.unit
+INNER JOIN ingredients ON ingredients.id = recipeingredients.ingredientID
+WHERE recipeingredients.recipeID = 
+								(SELECT id 
+                                 FROM author 
+                                 WHERE fname = 'Betty' LIMIT 1) 
+ORDER BY recipeingredients.recipeID ASC
